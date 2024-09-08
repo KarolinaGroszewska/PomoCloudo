@@ -17,7 +17,7 @@ struct ContentView: View {
     
     var body: some View {
         ZStack{
-            workingSession ? Color.focusBackground .ignoresSafeArea() : Color.breakBackground .ignoresSafeArea()
+            workingSession ? Color.Focus.background .ignoresSafeArea() : Color.ShortBreak.background .ignoresSafeArea()
                
             VStack{
                 Spacer()
@@ -29,20 +29,20 @@ struct ContentView: View {
                         Text(workingSession ?  Image(systemName: "brain") : Image(systemName: "cup.and.saucer"))
                         Text(workingSession ? "Focus" : "Short Break")
                     }
-                    .foregroundStyle(workingSession ? Color.focusText : Color.breakText)
+                    .foregroundStyle(workingSession ? Color.Focus.text : Color.ShortBreak.text)
                     .padding([.top, .bottom], 6)
                     .padding([.leading, .trailing], 10)
                 })
-                .background(workingSession ? Color.focusPrimaryButtonBackground : Color.breakPrimaryButtonBackground)
+                .background(workingSession ? Color.Focus.primaryButton : Color.ShortBreak.primaryButton)
                 .clipShape(Capsule())
                 .overlay(
                     RoundedRectangle(cornerRadius: /*@START_MENU_TOKEN@*/25.0/*@END_MENU_TOKEN@*/)
-                        .stroke(workingSession ? Color.focusText : Color.breakText)
+                        .stroke(workingSession ? Color.Focus.text : Color.ShortBreak.text)
                 )
                 .padding(.bottom, -30)
 
                 Text(convertSecondsToTime(timeInSeconds: timeRemaining))
-                    .foregroundStyle(workingSession ? Color.focusText : Color.breakText)
+                    .foregroundStyle(workingSession ? Color.Focus.text : Color.ShortBreak.text)
                     .font(.variableFont(210.92, axis: [.weight: 690]))
                     .environment(\._lineHeightMultiple, 0.78)
                     .onReceive(timer) { _ in
@@ -56,9 +56,9 @@ struct ContentView: View {
                     } label: {
                         Text(Image(systemName: "ellipsis"))
                             .font(.variableFont(25))
-                            .foregroundStyle(workingSession ? Color.focusText : Color.breakText)
+                            .foregroundStyle(workingSession ? Color.Focus.text : Color.ShortBreak.text)
                             .padding(18)
-                            .background(workingSession ? Color.focusPrimaryButtonBackground : Color.breakPrimaryButtonBackground)
+                            .background(workingSession ? Color.Focus.primaryButton : Color.ShortBreak.primaryButton)
                             .clipShape(.buttonBorder)
 
                     }
@@ -67,10 +67,10 @@ struct ContentView: View {
                     } label: {
                         Text(Image(systemName: timerOn ? "pause.fill": "play.fill" ))
                             .font(.variableFont(25))
-                            .foregroundStyle(workingSession ? Color.focusText : Color.breakText)
+                            .foregroundStyle(workingSession ? Color.Focus.text : Color.ShortBreak.text)
                             .padding(25)
                             .padding([.leading, .trailing], 15)
-                            .background(workingSession ? Color.focusSecondaryButtonBackground : Color.breakSecondaryButtonBackground)
+                            .background(workingSession ? Color.Focus.secondaryButton : Color.ShortBreak.secondaryButton)
                             .clipShape(.buttonBorder)
                     }
                     Button {
@@ -80,9 +80,9 @@ struct ContentView: View {
                     } label: {
                         Text(Image(systemName: "forward.fill"))
                             .font(.variableFont(25))
-                            .foregroundStyle(workingSession ? Color.focusText : Color.breakText)
+                            .foregroundStyle(workingSession ? Color.Focus.text : Color.ShortBreak.text)
                             .padding(18)
-                            .background(workingSession ? Color.focusPrimaryButtonBackground : Color.breakPrimaryButtonBackground)
+                            .background(workingSession ? Color.Focus.primaryButton : Color.ShortBreak.primaryButton)
                             .clipShape(.buttonBorder)
 
                     }
