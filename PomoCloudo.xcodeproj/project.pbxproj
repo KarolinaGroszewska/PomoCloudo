@@ -15,6 +15,7 @@
 		4AD01CCA2C8E40B3008CBCF7 /* FontVariations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD01CC92C8E40B3008CBCF7 /* FontVariations.swift */; };
 		4AD01CCC2C8E659C008CBCF7 /* ColorSchemes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD01CCB2C8E659C008CBCF7 /* ColorSchemes.swift */; };
 		4AD01CCE2C90F314008CBCF7 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD01CCD2C90F314008CBCF7 /* Status.swift */; };
+		4AD01CD02C90FD59008CBCF7 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD01CCF2C90FD59008CBCF7 /* SettingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		4AD01CC92C8E40B3008CBCF7 /* FontVariations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontVariations.swift; sourceTree = "<group>"; };
 		4AD01CCB2C8E659C008CBCF7 /* ColorSchemes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSchemes.swift; sourceTree = "<group>"; };
 		4AD01CCD2C90F314008CBCF7 /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
+		4AD01CCF2C90FD59008CBCF7 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,7 @@
 				4AD01CC52C8E3AD4008CBCF7 /* Fonts */,
 				4AC615BE2C8C9F2800E9D016 /* PomoCloudoApp.swift */,
 				4AC615C02C8C9F2800E9D016 /* ContentView.swift */,
+				4AD01CCF2C90FD59008CBCF7 /* SettingView.swift */,
 				4AD01CCD2C90F314008CBCF7 /* Status.swift */,
 				4AC615C22C8C9F2900E9D016 /* Assets.xcassets */,
 				4AC615C42C8C9F2900E9D016 /* Preview Content */,
@@ -163,6 +166,7 @@
 				4AD01CCC2C8E659C008CBCF7 /* ColorSchemes.swift in Sources */,
 				4AD01CCE2C90F314008CBCF7 /* Status.swift in Sources */,
 				4AD01CCA2C8E40B3008CBCF7 /* FontVariations.swift in Sources */,
+				4AD01CD02C90FD59008CBCF7 /* SettingView.swift in Sources */,
 				4AC615C12C8C9F2800E9D016 /* ContentView.swift in Sources */,
 				4AC615BF2C8C9F2800E9D016 /* PomoCloudoApp.swift in Sources */,
 			);

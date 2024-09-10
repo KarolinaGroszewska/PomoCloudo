@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
     @State var userStatus: Status
     @State var timerOn = false
+    @State var showingSetting = false
     //TODO: Override Pomodoro Length with User Preferences
         @State var timeRemaining = 1500
     @State var numPomos = 0
@@ -30,6 +31,7 @@ struct ContentView: View {
                         Text("Focus")
                         
                     }).foregroundStyle(Color.Focus.text)
+                        .font(.variableFont(18, axis: [.weight: 400]))
                         .padding([.top, .bottom], 6)
                         .padding([.leading, .trailing], 10)
                         .background(Color.Focus.primaryButton)
@@ -50,7 +52,7 @@ struct ContentView: View {
                         }
                     HStack{
                         Button {
-                            //TODO: Open up a settings menu
+                            self.showingSetting.toggle()
                         } label: {
                             Text(Image(systemName: "ellipsis"))
                                 .font(.variableFont(25))
@@ -59,7 +61,9 @@ struct ContentView: View {
                                 .background(Color.Focus.primaryButton)
                                 .clipShape(.buttonBorder)
                             
-                        }
+                        }.sheet(isPresented: $showingSetting, content: {
+                            SettingView(userStatus: userStatus)
+                        })
                         Button {
                             timerOn.toggle()
                         } label: {
@@ -106,6 +110,7 @@ struct ContentView: View {
                          Text("Short Break")
                          
                      }).foregroundStyle(Color.ShortBreak.text)
+                         .font(.variableFont(18, axis: [.weight: 400]))
                          .padding([.top, .bottom], 6)
                          .padding([.leading, .trailing], 10)
                          .background(Color.ShortBreak.primaryButton)
@@ -126,7 +131,7 @@ struct ContentView: View {
                          }
                      HStack{
                          Button {
-                             //TODO: Open up a settings menu
+                             self.showingSetting.toggle()
                          } label: {
                              Text(Image(systemName: "ellipsis"))
                                  .font(.variableFont(25))
@@ -135,7 +140,9 @@ struct ContentView: View {
                                  .background(Color.ShortBreak.primaryButton)
                                  .clipShape(.buttonBorder)
                              
-                         }
+                         }.sheet(isPresented: $showingSetting, content: {
+                             SettingView(userStatus: userStatus)
+                         })
                          Button {
                              timerOn.toggle()
                          } label: {
@@ -176,6 +183,7 @@ struct ContentView: View {
                         Text("Long Break")
                         
                     }).foregroundStyle(Color.LongBreak.text)
+                        .font(.variableFont(18, axis: [.weight: 400]))
                         .padding([.top, .bottom], 6)
                         .padding([.leading, .trailing], 10)
                         .background(Color.LongBreak.primaryButton)
@@ -196,7 +204,7 @@ struct ContentView: View {
                         }
                     HStack{
                         Button {
-                            //TODO: Open up a settings menu
+                            self.showingSetting.toggle()
                         } label: {
                             Text(Image(systemName: "ellipsis"))
                                 .font(.variableFont(25))
@@ -205,7 +213,9 @@ struct ContentView: View {
                                 .background(Color.LongBreak.primaryButton)
                                 .clipShape(.buttonBorder)
                             
-                        }
+                        }.sheet(isPresented: $showingSetting, content: {
+                            SettingView(userStatus: userStatus)
+                        })
                         Button {
                             timerOn.toggle()
                         } label: {
@@ -240,98 +250,6 @@ struct ContentView: View {
     var body: some View {
         returnView(status: userStatus)
     }
-//        ZStack{
-//            switch (userStatus){
-//            case .focus:
-//                Color.Focus.background.ignoresSafeArea()
-//            case .shortBreak:
-//                Color.ShortBreak.background.ignoresSafeArea()
-//            case .longBreak:
-//                Color.LongBreak.background.ignoresSafeArea()
-//            }
-//               
-//            VStack{
-//                Spacer()
-//                Button(action: {
-//                    switch (userStatus){
-//                    case .focus:
-//                        timeRemaining = 1500
-//                    case .shortBreak:
-//                        timeRemaining = 300
-//                    case .longBreak:
-//                        timeRemaining = 900
-//                    }
-//                    timerOn = true
-//                }, label: {
-//                    HStack{
-//                        Text(userStatus ?  Image(systemName: "brain") : Image(systemName: "cup.and.saucer"))
-//                        Text(userStatus ? "Focus" : "Short Break")
-//                    }
-//                    .foregroundStyle(userStatus ? Color.Focus.text : Color.ShortBreak.text)
-//                    .padding([.top, .bottom], 6)
-//                    .padding([.leading, .trailing], 10)
-//                })
-//                .background(userStatus ? Color.Focus.primaryButton : Color.ShortBreak.primaryButton)
-//                .clipShape(Capsule())
-//                .overlay(
-//                    RoundedRectangle(cornerRadius: /*@START_MENU_TOKEN@*/25.0/*@END_MENU_TOKEN@*/)
-//                        .stroke(userStatus ? Color.Focus.text : Color.ShortBreak.text)
-//                )
-//                .padding(.bottom, -30)
-//
-//                Text(convertSecondsToTime(timeInSeconds: timeRemaining))
-//                    .foregroundStyle(userStatus ? Color.Focus.text : Color.ShortBreak.text)
-//                    .font(.variableFont(210.92, axis: [.weight: 690]))
-//                    .environment(\._lineHeightMultiple, 0.78)
-//                    .onReceive(timer) { _ in
-//                        if timerOn {
-//                            timeRemaining -= 1
-//                        }
-//                    }
-//                HStack{
-//                    Button {
-//                        //TODO: Open up a settings menu
-//                    } label: {
-//                        Text(Image(systemName: "ellipsis"))
-//                            .font(.variableFont(25))
-//                            .foregroundStyle(userStatus ? Color.Focus.text : Color.ShortBreak.text)
-//                            .padding(18)
-//                            .background(userStatus ? Color.Focus.primaryButton : Color.ShortBreak.primaryButton)
-//                            .clipShape(.buttonBorder)
-//
-//                    }
-//                    Button {
-//                        timerOn.toggle()
-//                    } label: {
-//                        Text(Image(systemName: timerOn ? "pause.fill": "play.fill" ))
-//                            .font(.variableFont(25))
-//                            .foregroundStyle(userStatus ? Color.Focus.text : Color.ShortBreak.text)
-//                            .padding(25)
-//                            .padding([.leading, .trailing], 15)
-//                            .background(userStatus ? Color.Focus.secondaryButton : Color.ShortBreak.secondaryButton)
-//                            .clipShape(.buttonBorder)
-//                    }
-//                    Button {
-//                        userStatus.toggle()
-//                        timeRemaining = userStatus ? 1500 : 300
-//                        timerOn = false
-//                    } label: {
-//                        Text(Image(systemName: "forward.fill"))
-//                            .font(.variableFont(25))
-//                            .foregroundStyle(userStatus ? Color.Focus.text : Color.ShortBreak.text)
-//                            .padding(18)
-//                            .background(userStatus ? Color.Focus.primaryButton : Color.ShortBreak.primaryButton)
-//                            .clipShape(.buttonBorder)
-//
-//                    }
-//                    
-//                }
-//                .padding(.top, -120)
-//                Spacer()
-//            }
-//        }
-//    }
-
     func convertSecondsToTime(timeInSeconds: Int) -> String {
         let minutes = timeInSeconds / 60
         let seconds = timeInSeconds % 60
