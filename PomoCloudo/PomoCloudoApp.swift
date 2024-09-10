@@ -11,7 +11,7 @@ import SwiftUI
 struct PomoCloudoApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(userStatus: Status.focus)
         }
     }
 }
