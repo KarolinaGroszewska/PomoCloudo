@@ -26,6 +26,6 @@ extension Color {
         static let text = Color(red: 21/255, green: 48/255, blue: 71/255)
         static let background = Color(red: 242/255, green: 249/255, blue: 255/255)
         static let primaryButton = Color(red: 76/255, green: 172/255, blue: 255/255, opacity: 0.15)
-        static let secondaryButton = Color(red: 77/255, green: 218/255, blue: 110/255, opacity: 0.62)
+        static let secondaryButton = Color(red: 76/255, green: 172/255, blue: 255/255, opacity: 0.62)
     }
 }

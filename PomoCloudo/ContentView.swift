@@ -11,9 +11,7 @@ struct ContentView: View {
     @State var userStatus: Status
     @State var timerOn = false
     //TODO: Override Pomodoro Length with User Preferences
-    
-    //TODO: Add in the long break functionality by adding an enum and switch for user status
-    @State var timeRemaining = 1500
+        @State var timeRemaining = 1500
     @State var numPomos = 0
     
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
@@ -77,10 +75,11 @@ struct ContentView: View {
                             numPomos += 1
                             if numPomos % 4 == 0 {
                                 userStatus = .longBreak
+                                timeRemaining = 900
                             } else {
                                 userStatus = .shortBreak
+                                timeRemaining = 300
                             }
-                            timeRemaining = 1500
                             timerOn = false
                         } label: {
                             Text(Image(systemName: "forward.fill"))
@@ -98,10 +97,142 @@ struct ContentView: View {
         case .shortBreak:
              ZStack {
                 Color.ShortBreak.background.ignoresSafeArea()
+                 VStack{
+                     Spacer()
+                     Button(action: {
+                         timeRemaining = 300
+                     }, label: {
+                         Text(Image(systemName: "cup.and.saucer"))
+                         Text("Short Break")
+                         
+                     }).foregroundStyle(Color.ShortBreak.text)
+                         .padding([.top, .bottom], 6)
+                         .padding([.leading, .trailing], 10)
+                         .background(Color.ShortBreak.primaryButton)
+                         .clipShape(Capsule())
+                         .overlay(
+                             RoundedRectangle(cornerRadius: /*@START_MENU_TOKEN@*/25.0/*@END_MENU_TOKEN@*/)
+                                 .stroke(Color.ShortBreak.text)
+                         )
+                         .padding(.bottom, -30)
+                     Text(convertSecondsToTime(timeInSeconds: timeRemaining))
+                         .foregroundStyle(Color.ShortBreak.text)
+                         .font(.variableFont(210.92, axis: [.weight: 690]))
+                         .environment(\._lineHeightMultiple, 0.78)
+                         .onReceive(timer) { _ in
+                             if timerOn {
+                                 timeRemaining -= 1
+                             }
+                         }
+                     HStack{
+                         Button {
+                             //TODO: Open up a settings menu
+                         } label: {
+                             Text(Image(systemName: "ellipsis"))
+                                 .font(.variableFont(25))
+                                 .foregroundStyle(Color.ShortBreak.text)
+                                 .padding(18)
+                                 .background(Color.ShortBreak.primaryButton)
+                                 .clipShape(.buttonBorder)
+                             
+                         }
+                         Button {
+                             timerOn.toggle()
+                         } label: {
+                             Text(Image(systemName: timerOn ? "pause.fill": "play.fill" ))
+                                 .font(.variableFont(25))
+                                 .foregroundStyle(Color.ShortBreak.text)
+                                 .padding(25)
+                                 .padding([.leading, .trailing], 15)
+                                 .background(Color.ShortBreak.secondaryButton)
+                                 .clipShape(.buttonBorder)
+                         }
+                         Button {
+                             userStatus = .focus
+                             timeRemaining = 1500
+                             timerOn = false
+                         } label: {
+                             Text(Image(systemName: "forward.fill"))
+                                 .font(.variableFont(25))
+                                 .foregroundStyle(Color.ShortBreak.text)
+                                 .padding(18)
+                                 .background(Color.ShortBreak.primaryButton)
+                                 .clipShape(.buttonBorder)
+                         }
+                     }
+                     .padding(.top, -120)
+                     Spacer()
+                 }
             }
         case .longBreak:
             ZStack {
                 Color.LongBreak.background.ignoresSafeArea()
+                VStack{
+                    Spacer()
+                    Button(action: {
+                        timeRemaining = 900
+                    }, label: {
+                        Text(Image(systemName: "cup.and.saucer"))
+                        Text("Long Break")
+                        
+                    }).foregroundStyle(Color.LongBreak.text)
+                        .padding([.top, .bottom], 6)
+                        .padding([.leading, .trailing], 10)
+                        .background(Color.LongBreak.primaryButton)
+                        .clipShape(Capsule())
+                        .overlay(
+                            RoundedRectangle(cornerRadius: /*@START_MENU_TOKEN@*/25.0/*@END_MENU_TOKEN@*/)
+                                .stroke(Color.LongBreak.text)
+                        )
+                        .padding(.bottom, -30)
+                    Text(convertSecondsToTime(timeInSeconds: timeRemaining))
+                        .foregroundStyle(Color.LongBreak.text)
+                        .font(.variableFont(210.92, axis: [.weight: 690]))
+                        .environment(\._lineHeightMultiple, 0.78)
+                        .onReceive(timer) { _ in
+                            if timerOn {
+                                timeRemaining -= 1
+                            }
+                        }
+                    HStack{
+                        Button {
+                            //TODO: Open up a settings menu
+                        } label: {
+                            Text(Image(systemName: "ellipsis"))
+                                .font(.variableFont(25))
+                                .foregroundStyle(Color.LongBreak.text)
+                                .padding(18)
+                                .background(Color.LongBreak.primaryButton)
+                                .clipShape(.buttonBorder)
+                            
+                        }
+                        Button {
+                            timerOn.toggle()
+                        } label: {
+                            Text(Image(systemName: timerOn ? "pause.fill": "play.fill" ))
+                                .font(.variableFont(25))
+                                .foregroundStyle(Color.LongBreak.text)
+                                .padding(25)
+                                .padding([.leading, .trailing], 15)
+                                .background(Color.LongBreak.secondaryButton)
+                                .clipShape(.buttonBorder)
+                        }
+                        Button {
+                            userStatus = .focus
+                            timeRemaining = 1500
+                            timerOn = false
+                        } label: {
+                            Text(Image(systemName: "forward.fill"))
+                                .font(.variableFont(25))
+                                .foregroundStyle(Color.LongBreak.text)
+                                .padding(18)
+                                .background(Color.LongBreak.primaryButton)
+                                .clipShape(.buttonBorder)
+                        }
+                    }
+                    .padding(.top, -120)
+                    Spacer()
+                }
             }
             
         }
